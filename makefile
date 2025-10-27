@@ -6,11 +6,8 @@ DEVELOPERS	:= Ariel Plasencia Díaz
 COPYRIGHT  	:= Copyright © 2025: $(DEVELOPERS)
 
 
-run_make_pairs: ## Run the make pairs
-	python3 make_pairs.py
-
-run_review_pairs: ## Run the review pairs app
-	streamlit run review_pairs.py
+run: ## Run the review pairs
+	python3 review_pairs.py
 
 info: ## Display project description
 	@echo "$(NAME) v$(VERSION)"

@@ -12,7 +12,7 @@ from typing import Any
 from scipy.ndimage import binary_dilation
 
 
-PAIRS_XLSX = "./review-pairs/pairs.xlsx"
+PAIRS_XLSX = "./pairs.xlsx"
 SHEET_NAME = "pairs"
 REVIEW_COL = "review"
 REVIEW_VALUES = {"accept": "ACEPTAR", "reject": "CANCELAR"}
