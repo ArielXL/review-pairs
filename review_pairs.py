@@ -300,66 +300,6 @@ def get_mask_path_from_row(row: pd.Series, which: str) -> str | None:
     return sorted(candidates)[0]
 
 
-# def overlay_mask_on_image(
-#     img_rgb: Image.Image, mask_path: str, alpha: float = MASK_ALPHA
-# ) -> Image.Image | None:
-#     """
-#     SUMMARY
-#     -------
-#     Superpone una máscara en una imagen dada.
-
-#     PARAMETERS
-#     ----------
-#     img_rgb : Image.Image
-#         La imagen en la que se superpondrá la máscara.
-#     mask_path : str
-#         La ruta a la máscara que se superpondrá.
-#     alpha : float
-#         El valor de opacidad de la máscara.
-
-#     RETURNS
-#     -------
-#     Image.Image | None
-#         La imagen resultante con la máscara superpuesta o None si hubo un error.
-#     """
-#     try:
-#         with Image.open(mask_path) as m:
-#             maskL = m.convert("L")
-#     except Exception:
-#         return None
-
-#     if maskL.size != img_rgb.size:
-#         maskL = maskL.resize(img_rgb.size, resample=Image.NEAREST)
-
-#     mask_np = np.array(maskL)
-#     bin_np = (mask_np > 0).astype(np.uint8) * 255
-#     if bin_np.max() == 0:
-#         return None
-
-#     mask_bin = Image.fromarray(bin_np)
-
-#     overlay = Image.new("RGBA", img_rgb.size, (255, 0, 0, 0))
-#     rgba = Image.new("RGBA", img_rgb.size, (255, 0, 0, int(round(alpha * 255))))
-#     rgba.putalpha(mask_bin)
-#     overlay = Image.alpha_composite(overlay, rgba)
-
-#     dil = mask_bin.filter(ImageFilter.MaxFilter(size=3))
-#     ero = mask_bin.filter(ImageFilter.MinFilter(size=3))
-#     edge = ImageChops.difference(dil, ero).convert("L")
-#     edge = edge.point(lambda p: 255 if p > 0 else 0)
-
-#     edge_rgba = Image.new("RGBA", img_rgb.size, (255, 0, 0, 0))
-#     edge_arr = np.array(edge_rgba)
-#     e_np = np.array(edge)
-#     edge_arr[e_np == 255] = (255, 0, 0, 255)
-#     edge_rgba = Image.fromarray(edge_arr)
-
-#     base = img_rgb.convert("RGBA")
-#     out = Image.alpha_composite(base, overlay)
-#     out = Image.alpha_composite(out, edge_rgba)
-#     return out.convert("RGB")
-
-
 def overlay_mask_on_image(
     img_rgb: Image.Image,
     mask_path: str,
