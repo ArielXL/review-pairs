@@ -15,7 +15,7 @@ from scipy.ndimage import binary_dilation
 PAIRS_XLSX = "./pairs.xlsx"
 SHEET_NAME = "pairs"
 REVIEW_COL = "review"
-REVIEW_VALUES = {"accept": "ACEPTAR", "reject": "CANCELAR"}
+REVIEW_VALUES = {"accept": "ACEPTAR", "reject": "Rechazar"}
 MASK_ALPHA = 0.35
 REQUIRE_MASK = True
 
@@ -567,7 +567,7 @@ def run_app():
         if st.button("✅ Aceptar", key=f"btn_accept_{i}", disabled=disable_actions):
             set_review_and_advance(i, REVIEW_VALUES["accept"])
     with col_btn2:
-        if st.button("❌ Cancelar", key=f"btn_reject_{i}", disabled=disable_actions):
+        if st.button("❌ Rechazar", key=f"btn_reject_{i}", disabled=disable_actions):
             set_review_and_advance(i, REVIEW_VALUES["reject"])
     with col_btn3:
         if st.button("🧽 Limpiar decisión", key=f"btn_clear_single_{i}"):
@@ -599,7 +599,7 @@ def run_app():
                     st.toast("Todas las decisiones fueron limpiadas.", icon="🧼")
                     st.rerun()
             with c2:
-                if st.button("Cancelar", key="btn_clear_all_cancel"):
+                if st.button("Rechazar", key="btn_clear_all_cancel"):
                     st.session_state.show_clear_all = False
                     st.info("Operación cancelada.")
                     st.rerun()
